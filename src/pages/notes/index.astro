@@ -1,28 +1,24 @@
 ---
 import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Default.astro';
 
 const notes = (await getCollection('notes')).sort(
 	(a, b) => b.data.createdAt.valueOf() - a.data.createdAt.valueOf(),
 );
 ---
 
-<!doctype html>
-<html lang="en">
-	<body>
-		<main>
-			<section>
-				<ul>
-					{
-						notes.map((note) => (
-							<li>
-								<a href={`/notes/${note.slug}/`}>
-									<h4 class="title">{note.data.title}</h4>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-	</body>
-</html>
+<Layout>
+	<section>
+		<ul>
+			{
+				notes.map((note) => (
+					<li>
+						<a href={`/notes/${note.slug}/`}>
+							<h4 class="title">{note.data.title}</h4>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</Layout>
