@@ -1,7 +1,28 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import '@fontsource/courier-prime';
+import Landmark from '~/components/Landmark.astro';
+import Navigation from '~/components/Navigation.astro';
+import '~/styles/global.css';
+---
+
 <html lang="en">
+    <head>
+            <meta charset="utf-8" />
+            <slot name="seo" />
+						<ViewTransitions />
+    </head>
+
 	<body>
-		<main>
-			<slot />
-		</main>
+	   <div class="container grid grid-cols-1 md:grid-cols-[1fr,_auto] gap-4 md:gap-8 lg:gap-12 h-dvh overflow-y-auto py-4">
+
+				<main class="overflow-y-auto pr-2"><slot /></main>
+
+				<div class="flex md:flex-col justify-between gap-2">
+					<Navigation />
+
+			 <Landmark text="Reinny Almonte Ramos" />
+					</div>
+	</div>
 	</body>
 </html>

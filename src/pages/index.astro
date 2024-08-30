@@ -1,7 +1,16 @@
 ---
-import Layout from '../layouts/Default.astro';
+import { Image } from 'astro:assets';
+import { AstroSeo } from '@astrolib/seo';
+import Layout from '~/layouts/Default.astro';
+import media from '~/assets/images/hero.jpg';
 ---
 
 <Layout>
-	<a href="/notes">View Notes</a>
+	<AstroSeo
+	title='Reinny Almonte Ramos'
+	description="Reinny's Personal Space"
+	slot='seo'
+/>
+
+	<Image src={media} alt="the first picture Reinny took with a film camera" class="object-cover object-center w-full h-full select-none border-2 border-black" />
 </Layout>

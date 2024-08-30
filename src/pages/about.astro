@@ -1,0 +1,81 @@
+---
+import { AstroSeo } from '@astrolib/seo';
+import { Image } from 'astro:assets';
+import Layout from '~/layouts/Default.astro';
+import media from '~/assets/images/me.jpg';
+---
+
+<Layout>
+	<AstroSeo
+		title='About (now)'
+		description='Reinny Almonte Ramos'
+		slot='seo'
+	/>
+
+	<article class="md:relative" data-hide-headings="true">
+		<h1 hidden aria-hidden="true">About</h1>
+
+		<Image
+			src={media}
+			alt="Reinny Almonte Ramos"
+		/>
+
+		<p>
+			Hello ~ my name is Reinny. I'm currently living in Cabarete, Dominican Republic. It has been my home for 6.5 years now. The ease of living is very precious, and the people and places are full of magic. I feel very grateful to be here.
+		</p>
+
+		<p>
+			I let my curiosity drive my actions. I love serving as a catalyst for growth in my friends' lives. I enjoy being in nature. I strive to be honest and present.
+		</p>
+
+		<h2 hidden aria-hidden="true">Randomness</h2>
+
+		<h3>question I'm trying to embody</h3>
+
+		<blockquote>
+			<p>what does a good day look like?</p>
+		</blockquote>
+
+		<h3>books and media I've enjoyed recently</h3>
+
+		<p>Currently I have a few books that I'm reading alternately: "What Can a Body Do?" by <a href="https://sarahendren.com/about/" target='_blank' rel="noreferrer noopener">Sara Hendren</a>, "The Art of Learning" by <a href="https://www.joshwaitzkin.com/josh" target='_blank' rel="noreferrer noopener">Josh Waitzkin</a>, "Iron John" by Robert Bly, "Letters to a Young Poet" by Rainer Maria Rilke, the translation by Joanna Macy and Anita Barrows, and "Vagabond" by Takehiko Inoue, the manga, once again.</p>
+		
+		<p>A good song that I can play and usually begin singing to is <a href="https://youtu.be/i-BznQE6B8U?si=8appXKQG2EDjvtGF" target='_blank' rel="noreferrer noopener">"Ya Hey" by Vampire Weekend</a>.</p>
+
+		<h3>new skills or subjects I'm currently learning</h3>
+
+		<p>I'm practicing submission grappling. I have never practiced any kind of contact sports before, and it is so much fun and frustrating trying to solve puzzles with my body and against another person - while at the same time letting go of the thinking and just doing.</p>
+
+		<h3>Humor that I appreciate</h3>
+
+		<p>I find absurdity hilarious. I love when people are able to laugh at themselves. Also conscious humor that attempts to draw attention to problematic themes and offer a new perspective.</p>
+
+		<p>I truly love <a href="https://letterboxd.com/film/monty-python-and-the-holy-grail/" target='_blank' rel="noreferrer noopener">"Monty Python and the Holy Grail"</a> and can watch it over and over again. Even the fact that some of my friends detest this film so much brings laughter to my belly.</p>
+	</article>
+</Layout>
+
+<style>
+	img {
+		aspect-ratio: 1 / 1;
+		object-position: center;
+		object-fit: cover;
+	}
+
+	@media (max-width: theme(screens.md)) {
+		img {
+			max-width: 24rem;
+			margin: 0 auto;
+			padding: unset;
+			float: unset;
+		}
+	}
+
+	@media (min-width: theme(screens.md)) {
+		img {
+			float: right;
+			max-width: 32rem;
+			padding-left: 2rem;
+			padding-bottom: 2rem
+		}
+	}
+	</style>

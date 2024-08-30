@@ -1,4 +1,5 @@
 ---
+import { AstroSeo } from '@astrolib/seo';
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Default.astro';
 
@@ -8,13 +9,20 @@ const notes = (await getCollection('notes')).sort(
 ---
 
 <Layout>
+	<AstroSeo
+	title='Notes'
+	description='A collection of my notes.'
+	slot='seo'
+/>
+
 	<section>
-		<ul>
+		<ul class="flex flex-col gap-4">
 			{
 				notes.map((note) => (
-					<li>
-						<a href={`/notes/${note.slug}/`}>
-							<h4 class="title">{note.data.title}</h4>
+					<li class="border-l-4 border-l-black/50 transition-colors hover:border-l-black focus-within:border-l-black pl-2">
+						<a href={`/notes/${note.slug}/`} class="flex flex-col">
+							<h4 class="font-semibold">{note.data.title}</h4>
+							<p class="text-balance line-clamp-2">{note.data.description}</p>
 						</a>
 					</li>
 				))

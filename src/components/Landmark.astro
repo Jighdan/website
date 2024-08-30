@@ -1,0 +1,19 @@
+---
+interface Props {
+	// will be split into lines
+	text: string;
+}
+
+const { text } = Astro.props;
+const words = text.split(" ");
+---
+
+<a href="/">
+	<div role="figure" class="bg-black text-white aspect-square p-2 lowercase flex flex-col justify-end select-none">
+		{words.map(word => (
+			<span class="text-[length:min(1.5dvw,_0.5em)] leading-[0.95] break-words">
+				{word}{" "}
+			</span>
+		))}
+	</div>
+			</div></a>
