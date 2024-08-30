@@ -1,11 +1,11 @@
 ---
 import { AstroSeo } from '@astrolib/seo';
-import { getCollection } from 'astro:content';
+// import { getCollection } from 'astro:content';
 import Layout from '~/layouts/Default.astro';
 
-const projects = (await getCollection('projects')).sort(
-	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
+// const projects = (await getCollection('projects')).sort(
+// 	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+// );
 ---
 
 <Layout>
@@ -16,10 +16,10 @@ const projects = (await getCollection('projects')).sort(
 />
 
 	<section>
-		<ul class="">
+		<!-- <ul class="">
 			{projects.map(project => (
 				<li>{project.slug}</li>
 			))}
-		</ul>
+		</ul> -->
 	</section>
 </Layout>
