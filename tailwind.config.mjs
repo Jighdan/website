@@ -13,6 +13,11 @@ export default {
       default: ["Courier Prime", ...defaultTheme.fontFamily.mono],
     },
 
+    colors: {
+      white: '#f8f9fa',
+      black: '#212529'
+    },
+
     extend: {},
   },
   plugins: [],
