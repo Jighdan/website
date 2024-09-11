@@ -8,25 +8,24 @@ import '~/styles/global.css';
 ---
 
 <html lang="en">
-    <head>
-            <meta charset="utf-8" />
-            <slot name="seo" />
-						<ViewTransitions />
-						<GoogleTagmanager id={import.meta.env.PUBLIC_GOOGLE_TAG_MANAGER} partytown />
-    </head>
+  <head>
+    <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <slot name="seo" />
+		<ViewTransitions />
+		<GoogleTagmanager id={import.meta.env.PUBLIC_GOOGLE_TAG_MANAGER} partytown />
+  </head>
 
 	<body>
-	   <div class="container grid grid-cols-1 md:grid-cols-[1fr,_auto] gap-4 md:gap-8 lg:gap-12 h-dvh overflow-y-auto py-4">
+	   <div class="container py-4 h-dvh grid grid-cols-1 max-md:grid-rows-[1fr_auto] md:grid-cols-[1fr_auto] gap-4 md:gap-8">
+			<main class="overflow-y-auto pr-2"><slot /></main>
 
-				<main class="overflow-y-auto pr-2"><slot /></main>
+			<aside class="flex md:flex-col justify-between gap-2">
+				<Navigation />
+			  <Landmark text="Reinny Almonte Ramos" />
+			</aside>
+		</div>
 
-				<div class="flex md:flex-col justify-between gap-2">
-					<Navigation />
-
-			 <Landmark text="Reinny Almonte Ramos" />
-					</div>
-	</div>
-
-	<GoogleTagmanagerNoscript id={import.meta.env.PUBLIC_GOOGLE_TAG_MANAGER} />
+		<GoogleTagmanagerNoscript id={import.meta.env.PUBLIC_GOOGLE_TAG_MANAGER} />
 	</body>
 </html>
