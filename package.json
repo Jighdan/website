@@ -14,23 +14,24 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
-    "@astrojs/mdx": "^3.1.4",
+    "@astrojs/mdx": "^3.1.5",
     "@astrojs/rss": "^4.0.7",
     "@astrojs/sitemap": "^3.1.6",
     "@astrojs/tailwind": "^5.1.0",
     "@astrolib/seo": "1.0.0-beta.5",
     "@digi4care/astro-google-tagmanager": "^1.2.1",
-    "@fontsource/courier-prime": "^5.0.21",
-    "astro": "^4.14.5",
-    "tailwindcss": "^3.4.10",
-    "typescript": "^5.5.4"
+    "@fontsource/courier-prime": "^5.0.22",
+    "astro": "^4.15.4",
+    "nanostores": "^0.11.3",
+    "tailwindcss": "^3.4.11",
+    "typescript": "^5.6.2"
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "^8.3.0",
-    "eslint": "^9.9.1",
+    "@typescript-eslint/parser": "^8.5.0",
+    "eslint": "^9.10.0",
     "eslint-plugin-astro": "^1.2.3",
-    "eslint-plugin-jsx-a11y": "^6.9.0",
+    "eslint-plugin-jsx-a11y": "^6.10.0",
     "sharp": "^0.33.5",
-    "vite": "^5.4.2"
+    "vite": "^5.4.4"
   }
 }
