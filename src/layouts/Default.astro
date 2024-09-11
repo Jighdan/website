@@ -2,7 +2,6 @@
 import { ViewTransitions } from 'astro:transitions';
 import '@fontsource/courier-prime';
 import { GoogleTagmanager, GoogleTagmanagerNoscript } from '@digi4care/astro-google-tagmanager';
-import { GoogleAnalytics, GoogleAnalyticsNoscript } from '@digi4care/astro-google-analytics';
 import Landmark from '~/components/Landmark.astro';
 import Navigation from '~/components/Navigation.astro';
 import '~/styles/global.css';
@@ -15,7 +14,6 @@ import '~/styles/global.css';
     <slot name="seo" />
 		<ViewTransitions />
 		<GoogleTagmanager id={import.meta.env.PUBLIC_GOOGLE_TAG_MANAGER} partytown />
-		<GoogleAnalytics id={import.meta.env.PUBLIC_GOOGLE_ANALYTICS} partytown />
   </head>
 
 	<body>
@@ -29,6 +27,5 @@ import '~/styles/global.css';
 		</div>
 
 		<GoogleTagmanagerNoscript id={import.meta.env.PUBLIC_GOOGLE_TAG_MANAGER} />
-		<GoogleAnalyticsNoscript id={import.meta.env.PUBLIC_GOOGLE_ANALYTICS} />
 	</body>
 </html>
