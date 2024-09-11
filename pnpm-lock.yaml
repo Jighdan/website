@@ -8,24 +8,15 @@ importers:
 
   .:
     dependencies:
-      '@astrojs/check':
-        specifier: ^0.9.3
-        version: 0.9.3(typescript@5.6.2)
-      '@astrojs/mdx':
-        specifier: ^3.1.5
-        version: 3.1.5(astro@4.15.4(rollup@4.21.2)(typescript@5.6.2))
       '@astrojs/rss':
         specifier: ^4.0.7
         version: 4.0.7
-      '@astrojs/sitemap':
-        specifier: ^3.1.6
-        version: 3.1.6
-      '@astrojs/tailwind':
-        specifier: ^5.1.0
-        version: 5.1.0(astro@4.15.4(rollup@4.21.2)(typescript@5.6.2))(tailwindcss@3.4.11)
       '@astrolib/seo':
         specifier: 1.0.0-beta.5
         version: 1.0.0-beta.5(astro@4.15.4(rollup@4.21.2)(typescript@5.6.2))
+      '@digi4care/astro-google-analytics':
+        specifier: ^1.0.0
+        version: 1.0.0(astro@4.15.4(rollup@4.21.2)(typescript@5.6.2))
       '@digi4care/astro-google-tagmanager':
         specifier: ^1.2.1
         version: 1.2.1(astro@4.15.4(rollup@4.21.2)(typescript@5.6.2))
@@ -35,16 +26,19 @@ importers:
       astro:
         specifier: ^4.15.4
         version: 4.15.4(rollup@4.21.2)(typescript@5.6.2)
-      nanostores:
-        specifier: ^0.11.3
-        version: 0.11.3
-      tailwindcss:
-        specifier: ^3.4.11
-        version: 3.4.11
-      typescript:
-        specifier: ^5.6.2
-        version: 5.6.2
     devDependencies:
+      '@astrojs/check':
+        specifier: ^0.9.3
+        version: 0.9.3(typescript@5.6.2)
+      '@astrojs/mdx':
+        specifier: ^3.1.5
+        version: 3.1.5(astro@4.15.4(rollup@4.21.2)(typescript@5.6.2))
+      '@astrojs/sitemap':
+        specifier: ^3.1.6
+        version: 3.1.6
+      '@astrojs/tailwind':
+        specifier: ^5.1.0
+        version: 5.1.0(astro@4.15.4(rollup@4.21.2)(typescript@5.6.2))(tailwindcss@3.4.11)
       '@typescript-eslint/parser':
         specifier: ^8.5.0
         version: 8.5.0(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.2)
@@ -60,6 +54,12 @@ importers:
       sharp:
         specifier: ^0.33.5
         version: 0.33.5
+      tailwindcss:
+        specifier: ^3.4.11
+        version: 3.4.11
+      typescript:
+        specifier: ^5.6.2
+        version: 5.6.2
       vite:
         specifier: ^5.4.4
         version: 5.4.4
@@ -225,6 +225,11 @@ packages:
   '@babel/types@7.25.6':
     resolution: {integrity: sha512-/l42B1qxpG6RdfYf343Uw1vmDjeNhneUXtzhojE7pDgfpEypmRhI6j1kr17XCVv4Cgl9HdAiQY2x0GwKm7rWCw==}
     engines: {node: '>=6.9.0'}
+
+  '@digi4care/astro-google-analytics@1.0.0':
+    resolution: {integrity: sha512-c4gFvCVL2P0OSdLt+CbjeHxW3kWRXGF9r1lHY1Trqg3gont5TPqSC0X96XDOJ5HtwPnBHoKFZNJgwQBnv+KVPA==}
+    peerDependencies:
+      astro: ^1.2.1 || ^2.0.0 || ^3.0.0-beta.0 || ^3.0.0 || ^4.0.0
 
   '@digi4care/astro-google-tagmanager@1.2.1':
     resolution: {integrity: sha512-aNWhhjJxjPJmVG/dftor6PhByqWlCDMUt/XUa5aE4Avd1dzViApSr+1p5bVAnP3jdGkEK5kjZt5+Ff3vUqJmxw==}
@@ -2116,10 +2121,6 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  nanostores@0.11.3:
-    resolution: {integrity: sha512-TUes3xKIX33re4QzdxwZ6tdbodjmn3tWXCEc1uokiEmo14sI1EaGYNs2k3bU2pyyGNmBqFGAVl6jAGWd06AVIg==}
-    engines: {node: ^18.0.0 || >=20.0.0}
-
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
@@ -3303,6 +3304,10 @@ snapshots:
       '@babel/helper-string-parser': 7.24.8
       '@babel/helper-validator-identifier': 7.24.7
       to-fast-properties: 2.0.0
+
+  '@digi4care/astro-google-analytics@1.0.0(astro@4.15.4(rollup@4.21.2)(typescript@5.6.2))':
+    dependencies:
+      astro: 4.15.4(rollup@4.21.2)(typescript@5.6.2)
 
   '@digi4care/astro-google-tagmanager@1.2.1(astro@4.15.4(rollup@4.21.2)(typescript@5.6.2))':
     dependencies:
@@ -5705,8 +5710,6 @@ snapshots:
       thenify-all: 1.6.0
 
   nanoid@3.3.7: {}
-
-  nanostores@0.11.3: {}
 
   natural-compare@1.4.0: {}
 
