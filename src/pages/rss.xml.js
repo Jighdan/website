@@ -1,19 +1,19 @@
 import rss from '@astrojs/rss';
-import { getCollection } from 'astro:content';
+import { NOTES_SERVICE } from '~/services/notes';
 
 export async function GET(context) {
-	const notes = await getCollection('notes');
+	const notes = await NOTES_SERVICE.getAll();
 
 	return rss({
 		title: "Reinny's notes",
 		description: "about everything",
 		site: context.site,
 		items: notes.map((note) => ({
-			title: note.data.title,
-			description: note.data.description,
+			title: note.title,
+			description: note.description,
 			link: `/notes/${note.slug}/`,
-			pubDate: note.data.createdAt,
-			content: note.body
+			pubDate: note.date,
+			content: note.content
 		})),
 	});
 }

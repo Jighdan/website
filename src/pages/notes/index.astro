@@ -1,20 +1,20 @@
 ---
 import { AstroSeo } from '@astrolib/seo';
-import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Default.astro';
+import Layout from '~/layouts/Default.astro';
 import { formatDate } from '~/utilities/date';
+import { NOTES_SERVICE } from '~/services/notes';
 
-const notes = (await getCollection('notes')).sort(
-	(a, b) => b.data.createdAt.valueOf() - a.data.createdAt.valueOf(),
-);
+export const prerender = true;
+
+const notes = await NOTES_SERVICE.getAll();
 ---
 
 <Layout>
 	<AstroSeo
-	title='Notes'
-	description='A collection of my notes.'
-	slot='seo'
-/>
+		title='Notes'
+		description='A collection of my notes.'
+		slot='seo'
+	/>
 
 	<section>
 		<ul class="flex flex-col gap-4">
@@ -22,9 +22,9 @@ const notes = (await getCollection('notes')).sort(
 				notes.map((note) => (
 					<li class="border-l-4 border-l-black/50 transition-colors hover:border-l-black focus-within:border-l-black pl-2">
 						<a href={`/notes/${note.slug}/`} class="flex flex-col">
-							<p class="font-light text-base">{formatDate(note.data.createdAt)}</p>
-							<h4 class="font-semibold">{note.data.title}</h4>
-							<p class="text-balance line-clamp-2">{note.data.description}</p>
+							<p class="font-light text-base">{formatDate(note.date)}</p>
+							<h4 class="font-semibold">{note.title}</h4>
+							<p class="text-balance line-clamp-2">{note.description}</p>
 						</a>
 					</li>
 				))
