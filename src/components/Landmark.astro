@@ -9,9 +9,9 @@ const words = text.split(" ");
 ---
 
 <a href="/" class="block">
-	<div role="figure" class="bg-black text-white aspect-square p-2 lowercase flex flex-col justify-end select-none max-md:h-full">
+	<div role="figure" class="bg-black text-white aspect-square p-2 lowercase flex flex-col justify-end select-none max-lg:h-full">
 		{words.map(word => (
-			<span class="md:text-[length:min(1.5dvw,_0.5em)] text-[length:min(5dvw,_0.5em)] leading-[0.95] break-words">
+			<span class="lg:text-[length:min(1.5dvw,_0.5em)] text-[length:min(5dvw,_0.75em)] leading-[0.95] break-words">
 				{word}{" "}
 			</span>
 		))}
