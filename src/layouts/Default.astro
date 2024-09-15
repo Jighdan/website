@@ -5,6 +5,7 @@ import '@fontsource/courier-prime';
 import { GoogleTagmanager, GoogleTagmanagerNoscript } from '@digi4care/astro-google-tagmanager';
 import Landmark from '~/components/Landmark.astro';
 import Navigation from '~/components/Navigation.astro';
+import SEO from '~/components/SEO.astro';
 import '~/styles/global.css';
 
 interface Props {
@@ -21,10 +22,7 @@ const { title, description } = Astro.props;
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<ViewTransitions />
 		<GoogleTagmanager id={import.meta.env.PUBLIC_GOOGLE_TAG_MANAGER} partytown />
-		<AstroSeo
-			title={title}
-			description={description}
-		/>
+		<SEO title={title} description={description} />
   </head>
 
 	<body>
