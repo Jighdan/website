@@ -1,17 +1,13 @@
 ---
-import { AstroSeo } from '@astrolib/seo';
 import { Image } from 'astro:assets';
 import Layout from '~/layouts/Default.astro';
 import media from '~/assets/images/me.jpg';
 ---
 
-<Layout>
-	<AstroSeo
-		title='About (now)'
+<Layout
+title='About (now)'
 		description='Reinny Almonte Ramos'
-		slot='seo'
-	/>
-
+>
 	<article class="lg:relative" data-hide-headings="true">
 		<h1 hidden aria-hidden="true">About</h1>
 

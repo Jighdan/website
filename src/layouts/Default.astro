@@ -1,19 +1,30 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
+import { AstroSeo } from '@astrolib/seo';
 import '@fontsource/courier-prime';
 import { GoogleTagmanager, GoogleTagmanagerNoscript } from '@digi4care/astro-google-tagmanager';
 import Landmark from '~/components/Landmark.astro';
 import Navigation from '~/components/Navigation.astro';
 import '~/styles/global.css';
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <slot name="seo" />
 		<ViewTransitions />
 		<GoogleTagmanager id={import.meta.env.PUBLIC_GOOGLE_TAG_MANAGER} partytown />
+		<AstroSeo
+			title={title}
+			description={description}
+		/>
   </head>
 
 	<body>

@@ -1,16 +1,9 @@
 ---
-import { AstroSeo } from '@astrolib/seo';
 import Layout from '~/layouts/Default.astro';
 ---
 
-<Layout>
-	<AstroSeo
-		title='Efforts'
-		description='The Work I care about'
-		slot='seo'
-	/>
-
-	<article data-hide-headings="true">
+<Layout title="Efforts" description='The Work I care about' >
+    <article data-hide-headings="true">
     <h1 hidden aria-hidden="true">Efforts</h1>	
 
     <h3>Movement Practice Newsletter</h3>
@@ -38,5 +31,5 @@ import Layout from '~/layouts/Default.astro';
     <h3>Cultivate My Relationships</h3>
 
     <p>I love and care so much about the people around me, and day-to-day life can make it easy to lose contact and for others to forget you care for them. It's an effort to show love and deepen relationships.</p>
-</article>
+    </article>
 </Layout>

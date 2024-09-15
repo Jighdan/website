@@ -1,5 +1,4 @@
 ---
-import { AstroSeo } from '@astrolib/seo';
 // import { getCollection } from 'astro:content';
 import Layout from '~/layouts/Default.astro';
 
@@ -8,13 +7,8 @@ import Layout from '~/layouts/Default.astro';
 // );
 ---
 
-<Layout>
-	<AstroSeo
-	title='Projects'
-	description="A collection of projects I have sailed to do."
-	slot='seo'
-/>
-
+<Layout 	title='Projects'
+description="A collection of projects I have sailed to do.">
 	<section>
 		<!-- <ul class="">
 			{projects.map(project => (
