@@ -19,7 +19,7 @@ class Service {
 	public async getAll(): Promise<Note[]> {
 		try {
 			const response = await this.INSTANCE.get<GitLabTreeItem[]>('/tree');
-			const slugs = response.data.filter(({ path }) => path.endsWith('.md')).map(({ path }) => path.replace('.md', ''));
+			const slugs = response.data.filter(({ path, type }) => type === 'blob' && path.endsWith('.md')).map(({ path }) => path.replace('.md', ''));
 
 			const notes = await Promise.all(slugs.map(async (slug) => {
 				const rawFile = await this.get(slug);

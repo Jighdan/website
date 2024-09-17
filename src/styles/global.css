@@ -62,5 +62,5 @@ article blockquote > p {
 }
 
 article img {
-  @apply select-none;
+  @apply select-none md:mx-auto md:max-w-3xl;
 }
