@@ -29,7 +29,7 @@ const { title, description } = Astro.props;
 	   <div class="container py-4 h-dvh grid grid-cols-1 max-lg:grid-rows-[1fr_auto] lg:grid-cols-[1fr_auto] gap-4 lg:gap-6">
 			<main class="overflow-y-auto lg:pr-2"><slot /></main>
 
-			<aside class="flex lg:flex-col justify-between gap-2">
+			<aside class="flex max-lg:flex-row-reverse lg:flex-col justify-between gap-2">
 				<Navigation />
 			  <Landmark text="Reinny Almonte Ramos" />
 			</aside>

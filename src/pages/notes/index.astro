@@ -2,15 +2,23 @@
 import Layout from '~/layouts/Default.astro';
 import { formatDate } from '~/utilities/date';
 import { NOTES_SERVICE } from '~/services/notes';
+import IconRSS from "~/components/IconRSS.astro";
 
 export const prerender = true;
 
 const notes = await NOTES_SERVICE.getAll();
 ---
 
-<Layout title='Notes'
-description='A collection of my notes.'>
-	<section>
+<Layout
+	title='Notes'
+	description='A collection of my notes.'
+>
+	<section class="flex flex-col gap-4">
+		<a href={new URL("rss.xml", Astro.site)} title="RSS Feed" class="flex items-center gap-2 bg-black text-white p-0.5" rel="alternate">
+			<span>Get the RSS Feed</span>
+			<IconRSS className='h-3 lg:h-4 w-auto' />
+		</a>
+
 		<ul class="flex flex-col gap-4">
 			{
 				notes.map((note) => (
