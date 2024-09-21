@@ -14,9 +14,6 @@ importers:
       '@astrolib/seo':
         specifier: 1.0.0-beta.5
         version: 1.0.0-beta.5(astro@4.15.4(rollup@4.21.2)(typescript@5.6.2))
-      '@digi4care/astro-google-tagmanager':
-        specifier: ^1.2.1
-        version: 1.2.1(astro@4.15.4(rollup@4.21.2)(typescript@5.6.2))
       '@fontsource/courier-prime':
         specifier: ^5.0.22
         version: 5.0.22
@@ -242,11 +239,6 @@ packages:
   '@babel/types@7.25.6':
     resolution: {integrity: sha512-/l42B1qxpG6RdfYf343Uw1vmDjeNhneUXtzhojE7pDgfpEypmRhI6j1kr17XCVv4Cgl9HdAiQY2x0GwKm7rWCw==}
     engines: {node: '>=6.9.0'}
-
-  '@digi4care/astro-google-tagmanager@1.2.1':
-    resolution: {integrity: sha512-aNWhhjJxjPJmVG/dftor6PhByqWlCDMUt/XUa5aE4Avd1dzViApSr+1p5bVAnP3jdGkEK5kjZt5+Ff3vUqJmxw==}
-    peerDependencies:
-      astro: ^1.2.1 || ^2.0.0 || ^3.0.0-beta.0 || ^3.0.0 || ^4.0.0
 
   '@emmetio/abbreviation@2.3.3':
     resolution: {integrity: sha512-mgv58UrU3rh4YgbE/TzgLQwJ3pFsHHhCLqY20aJq+9comytTXUDNGG/SMtSeMJdkpxgXSXunBGLD8Boka3JyVA==}
@@ -3578,10 +3570,6 @@ snapshots:
       '@babel/helper-string-parser': 7.24.8
       '@babel/helper-validator-identifier': 7.24.7
       to-fast-properties: 2.0.0
-
-  '@digi4care/astro-google-tagmanager@1.2.1(astro@4.15.4(rollup@4.21.2)(typescript@5.6.2))':
-    dependencies:
-      astro: 4.15.4(rollup@4.21.2)(typescript@5.6.2)
 
   '@emmetio/abbreviation@2.3.3':
     dependencies:

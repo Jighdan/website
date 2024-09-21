@@ -1,7 +1,6 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 import '@fontsource/courier-prime';
-import { GoogleTagmanager, GoogleTagmanagerNoscript } from '@digi4care/astro-google-tagmanager';
 import Landmark from '~/components/Landmark.astro';
 import Navigation from '~/components/Navigation.astro';
 import SEO from '~/components/SEO.astro';
@@ -20,7 +19,6 @@ const { title, description } = Astro.props;
     <meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<ViewTransitions />
-		<GoogleTagmanager id={import.meta.env.PUBLIC_GOOGLE_TAG_MANAGER} partytown />
 		<SEO title={title} description={description} />
   </head>
 
@@ -33,7 +31,5 @@ const { title, description } = Astro.props;
 			  <Landmark text="Reinny Almonte Ramos" />
 			</aside>
 		</div>
-
-		<GoogleTagmanagerNoscript id={import.meta.env.PUBLIC_GOOGLE_TAG_MANAGER} />
 	</body>
 </html>
