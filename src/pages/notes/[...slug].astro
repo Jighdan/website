@@ -1,12 +1,12 @@
 ---
 import Layout from '~/layouts/Default.astro';
 import { formatDate } from '~/utilities/date';
-import { NOTES_SERVICE, type Note } from '~/services/notes';
+import { CONTENT_SERVICE, type Note } from '~/services/content';
 
 export const prerender = true;
 
 export async function getStaticPaths() {
-	const notes = await NOTES_SERVICE.getAll();
+	const notes = await CONTENT_SERVICE.getNotes();
 
 	return notes.map(note => ({
 		params: { slug: note.slug },

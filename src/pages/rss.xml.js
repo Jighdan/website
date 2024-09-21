@@ -1,8 +1,8 @@
 import rss from '@astrojs/rss';
-import { NOTES_SERVICE } from '~/services/notes';
+import { CONTENT_SERVICE } from '~/services/content';
 
 export async function GET(context) {
-	const notes = await NOTES_SERVICE.getAll();
+	const notes = await CONTENT_SERVICE.getNotes();
 
 	return rss({
 		title: "Reinny's notes",
