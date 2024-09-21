@@ -23,13 +23,17 @@ const seoTitle = `Projects | ${project.title}`;
 	title={seoTitle}
 	description={project.description}
 >
-	<article class="flex flex-col gap-6">
-		<div class="flex flex-col gap-2">
-			<span class="text-black/70">[{project.year_start}] {project.tags.join(", ")}</span>
+	<div class="flex flex-col gap-8">
+		<a href="/projects" class="bg-black text-white px-0.5 w-fit">Back to Projects</a>
 
-			<h2>{project.title} {!!project.archived && `[archived]`}</h2>
-		</div>
-
-	   <div class="flex flex-col gap-4" set:html={project.content} />
-	</article>
+		<article class="flex flex-col gap-6">
+			<div class="flex flex-col gap-2">
+				<span class="text-black/70">[{project.year_start}] {project.tags.join(", ")}</span>
+	
+				<h2>{project.title} {!!project.archived && `[archived]`}</h2>
+			</div>
+	
+			 <div class="flex flex-col gap-4" set:html={project.content} />
+		</article>
+	</div>
 </Layout>
