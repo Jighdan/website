@@ -2,18 +2,11 @@
 import { Image } from 'astro:assets';
 import Layout from '~/layouts/Default.astro';
 import media from '~/assets/images/hero.jpg';
-import {CONTENT_SERVICE} from '~/services/content';
-
-export async function load() {
-  const content = await CONTENT_SERVICE.getNotes();
-
-  console.info(content);
-};
-
-await load();
 ---
 
-<Layout title='Reinny Almonte Ramos'
-description="Reinny's Personal Space">
+<Layout
+  title='Reinny Almonte Ramos'
+  description="Reinny's Personal Space"
+>
 	<Image src={media} alt="the first picture Reinny took with a film camera" class="object-cover object-center w-full h-full select-none" />
 </Layout>
