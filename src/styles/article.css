@@ -1,0 +1,66 @@
+article {
+  @apply text-pretty scroll-smooth pb-8;
+}
+
+article h1::selection, article h2::selection, article h3::selection, article h4::selection, article p::selection, article a::selection, article span::selection {
+  @apply underline;
+
+  background-color: unset;
+  color: unset;
+}
+
+article h1, article h2, article h3, article h4 {
+  @apply font-bold;
+}
+
+article h1:first-of-type, article h2:first-of-type, article h3:first-of-type, article h4:first-of-type {
+  @apply mt-0;
+}
+
+article[data-hide-headings="true"] h1, article[data-hide-headings="true"] h2 {
+  @apply hidden;
+}
+
+article h1 {
+  @apply text-4xl md:text-5xl mb-0 mt-12;
+}
+
+article h2 {
+  @apply text-3xl md:text-4xl mb-2 mt-12;
+}
+
+article h3 {
+  @apply text-2xl md:text-3xl mb-2 mt-8 md:mt-12 lowercase;
+}
+
+article h4 {
+  @apply text-xl md:text-2xl;
+}
+
+article p {
+  @apply mb-4;
+}
+
+article a {
+  @apply bg-black text-white px-0.5;
+}
+
+article blockquote {
+  @apply mb-4 pl-4 border-l-4 border-black flex flex-col gap-7;
+}
+
+article blockquote > p {
+  @apply mb-0;
+}
+
+article img {
+  @apply select-none md:mx-auto md:max-w-3xl;
+}
+
+article ol {
+	@apply list-decimal list-inside;
+}
+
+article ul {
+	@apply list-disc list-inside;
+}
