@@ -1,32 +1,11 @@
-import axios, { type AxiosInstance } from "axios";
-import { MARKED } from "./utilities/marked";
-import matter from "gray-matter";
-import type {
-  JournalEntry,
-  GitLabTreeItem,
-  Project,
-  QueryCallbackParams,
-} from "./interfaces";
+import type { JournalEntry, Project, QueryCallbackParams } from "./interfaces";
+import { Repository } from "./utilities/repository";
 
 class Service {
-  private readonly BASE_URL = `https://gitlab.com/api/v4/projects/${import.meta.env.NOTES_PROJECT_ID}/repository`;
-  private INSTANCE: AxiosInstance;
-  private marked = MARKED.get();
+  private repository: Repository;
 
   constructor() {
-    if (
-      !import.meta.env.NOTES_PROJECT_ID ||
-      !import.meta.env.NOTES_ACCESS_TOKEN
-    ) {
-      throw Error("Missing environment variables");
-    }
-
-    this.INSTANCE = axios.create({
-      baseURL: this.BASE_URL,
-      headers: {
-        "PRIVATE-TOKEN": import.meta.env.NOTES_ACCESS_TOKEN,
-      },
-    });
+    this.repository = new Repository();
   }
 
   public async getJournalEntries() {
@@ -47,7 +26,7 @@ class Service {
     }
 
     try {
-      const notes = await this.getAll("notes", callback);
+      const notes = await this.repository.getAll("notes", callback);
 
       return notes.sort((a, b) => b.date.getTime() - a.date.getTime());
 
@@ -80,67 +59,13 @@ class Service {
     }
 
     try {
-      const projects = await this.getAll("projects", callback);
+      const projects = await this.repository.getAll("projects", callback);
 
       return projects.sort((a, b) => b.year_start - a.year_start);
     } catch (error) {
       console.error(error);
 
       return [];
-    }
-  }
-
-  private async getAll<CallbackResult>(
-    directory: string,
-    callback: (params: QueryCallbackParams) => CallbackResult | undefined
-  ): Promise<CallbackResult[]> {
-    try {
-      const response = await this.INSTANCE.get<GitLabTreeItem[]>("/tree", {
-        params: { ref: "main", recursive: false, path: directory },
-      });
-
-
-      const paths = response.data
-        .filter((file) => file.type === "blob" && file.path.endsWith(".md") && file.name !== "_template.md")
-        .map(({ name, path }) => ({ slug: name.replace(".md", ""), path }));
-
-      const content = await Promise.all(
-        paths.map(async ({ slug, path }) => {
-          const rawFile = await this.get(path);
-
-          if (rawFile) {
-            const file = matter(rawFile);
-            const content = await this.marked(file.content);
-
-            return callback({ slug, data: file.data, content });
-          }
-
-          return undefined;
-        })
-      );
-
-      const fileteredContent = content.filter(Boolean) as CallbackResult[];
-
-      return fileteredContent;
-    } catch (error) {
-
-      throw error;
-    }
-  }
-
-  private async get(filePath: string) {
-    try {
-      const encodedFilePath  = encodeURIComponent(filePath); 
-      const url = `/files/${encodedFilePath}/raw`;
-      const response = await this.INSTANCE.get<string>(url, {
-        params: { ref: "main" },
-      });
-
-      return response.data;
-    } catch (error) {
-      console.error(error);
-
-      return undefined;
     }
   }
 }

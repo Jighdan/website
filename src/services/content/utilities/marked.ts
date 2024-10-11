@@ -1,7 +1,8 @@
 import { marked, Renderer, Parser } from "marked";
 
+export type MarkedInstance = typeof marked;
 /** Custom `marked` instance. */
-class Marked {
+export class Marked {
 	private marked: typeof marked;
 	private renderer: Renderer;
 	private parser: Parser;
@@ -58,5 +59,3 @@ class Marked {
 		return out;
 	};
 };
-
-export const MARKED = new Marked()
