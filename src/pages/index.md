@@ -10,7 +10,7 @@ updatedAt: 11 Oct 2024
 
 ### whoami
 
-My name is Reinny Almonte Ramos and you could know me as a software craftsman, as a movement or jiu-jitsu practicioner, as a lover of stories, or as friend.
+My name is Reinny and you could know me as a software craftsman, as a movement or jiu-jitsu practicioner, as a lover of stories, or as friend.
 
 ### saying more
 
