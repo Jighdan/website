@@ -1,6 +1,6 @@
 import type { GrayMatterFile } from "gray-matter";
 
-export interface Note {
+export interface JournalEntry {
   slug: string;
   title: string;
   description: string;

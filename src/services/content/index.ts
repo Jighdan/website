@@ -2,7 +2,7 @@ import axios, { type AxiosInstance } from "axios";
 import { MARKED } from "./utilities/marked";
 import matter from "gray-matter";
 import type {
-  Note,
+  JournalEntry,
   GitLabTreeItem,
   Project,
   QueryCallbackParams,
@@ -29,13 +29,13 @@ class Service {
     });
   }
 
-  public async getNotes() {
+  public async getJournalEntries() {
     function callback({ slug, data, content }: QueryCallbackParams) {
       if (!data.title || !data.description || !data.createdAt) {
         return undefined;
       }
 
-      const note: Note = {
+      const note: JournalEntry = {
         slug,
         title: data.title,
         description: data.description,
@@ -146,4 +146,4 @@ class Service {
 }
 
 export const CONTENT_SERVICE = new Service();
-export type { Note, Project } from "./interfaces";
+export type { JournalEntry, Project } from "./interfaces";

@@ -22,7 +22,7 @@ On the [efforts page](/efforts) you could read about the projects I have been wo
 
 ### thoughts and notes
 
-I openly journal thoughts in the [notes page](/notes).
+I openly journal thoughts in the [journal page](/journal).
 
 ### contact
 

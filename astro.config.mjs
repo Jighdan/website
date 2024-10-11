@@ -13,5 +13,9 @@ export default defineConfig({
   adapter: vercel({
     webAnalytics: { enabled: true }
   }),
-  integrations: [mdx(), sitemap(), tailwind()]
+  integrations: [mdx(), sitemap(), tailwind()],
+  redirects: {
+    '/notes': '/journal',
+    '/notes/[...slug]': '/journal/[...slug]',
+  }
 });

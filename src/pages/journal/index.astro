@@ -6,27 +6,27 @@ import IconRSS from "~/components/IconRSS.astro";
 
 export const prerender = true;
 
-const notes = await CONTENT_SERVICE.getNotes();
+const entries = await CONTENT_SERVICE.getJournalEntries();
 ---
 
 <Layout
-	title='Notes'
-	description='A collection of my notes.'
+	title='Journal'
+	description='My Journal Entries.'
 >
 	<section class="flex flex-col gap-4">
-		<a href={new URL("/notes/rss.xml", Astro.site)} title="RSS Feed" class="flex items-center gap-2 bg-black text-white py-1 px-2" rel="alternate">
+		<a href={new URL("/journal/rss.xml", Astro.site)} title="Journal RSS Feed" class="flex items-center gap-2 bg-black text-white py-1 px-2" rel="alternate">
 			<span>Get the RSS Feed</span>
 			<IconRSS className='h-3 lg:h-4 w-auto' />
 		</a>
 
 		<ul class="flex flex-col gap-4">
 			{
-				notes.map((note) => (
+				entries.map((entry) => (
 					<li class="border-l-4 border-l-black/50 transition-colors hover:border-l-black focus-within:border-l-black pl-2">
-						<a href={`/notes/${note.slug}/`} class="flex flex-col">
-							<p class="font-light text-base">{formatDate(note.date)}</p>
-							<h4 class="font-semibold">{note.title}</h4>
-							<p class="text-balance line-clamp-2">{note.description}</p>
+						<a href={`/journal/${entry.slug}/`} class="flex flex-col">
+							<p class="font-light text-base">{formatDate(entry.date)}</p>
+							<h4 class="font-semibold">{entry.title}</h4>
+							<p class="text-balance line-clamp-2">{entry.description}</p>
 						</a>
 					</li>
 				))

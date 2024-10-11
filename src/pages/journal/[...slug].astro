@@ -1,0 +1,40 @@
+---
+import Layout from "~/layouts/Default.astro";
+import { formatDate } from "~/utilities/date";
+import { CONTENT_SERVICE, type JournalEntry } from "~/services/content";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const entries = await CONTENT_SERVICE.getJournalEntries();
+
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: entry,
+  }));
+}
+
+type Props = JournalEntry;
+
+const entry = Astro.props;
+
+const seoTitle = `Journal | ${entry.title}`;
+const date = formatDate(entry.date);
+---
+
+<Layout title={seoTitle} description={entry.description}>
+  <div class="flex flex-col gap-4">
+    <p class="text-sm text-right self-end">
+      <span>written: </span>
+
+      <time datetime={date} class="lowercase">
+        {date}
+      </time>
+    </p>
+
+    <article class="flex flex-col gap-6">
+      <h2 class="font-semibold">{entry.title}</h2>
+      <div class="flex flex-col gap-4" set:html={entry.content} />
+    </article>
+  </div>
+</Layout>
