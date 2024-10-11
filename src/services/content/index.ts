@@ -1,5 +1,5 @@
 import axios, { type AxiosInstance } from "axios";
-import { marked } from "marked";
+import { MARKED } from "./utilities/marked";
 import matter from "gray-matter";
 import type {
   Note,
@@ -11,6 +11,7 @@ import type {
 class Service {
   private readonly BASE_URL = `https://gitlab.com/api/v4/projects/${import.meta.env.NOTES_PROJECT_ID}/repository`;
   private INSTANCE: AxiosInstance;
+  private marked = MARKED.get();
 
   constructor() {
     if (
@@ -108,7 +109,7 @@ class Service {
 
           if (rawFile) {
             const file = matter(rawFile);
-            const content = await marked(file.content);
+            const content = await this.marked(file.content);
 
             return callback({ slug, data: file.data, content });
           }
