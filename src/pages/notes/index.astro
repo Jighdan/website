@@ -14,7 +14,7 @@ const notes = await CONTENT_SERVICE.getNotes();
 	description='A collection of my notes.'
 >
 	<section class="flex flex-col gap-4">
-		<a href={new URL("rss.xml", Astro.site)} title="RSS Feed" class="flex items-center gap-2 bg-black text-white py-1 px-2" rel="alternate">
+		<a href={new URL("/notes/rss.xml", Astro.site)} title="RSS Feed" class="flex items-center gap-2 bg-black text-white py-1 px-2" rel="alternate">
 			<span>Get the RSS Feed</span>
 			<IconRSS className='h-3 lg:h-4 w-auto' />
 		</a>
