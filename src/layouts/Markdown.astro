@@ -1,21 +1,27 @@
 ---
-import Layout from './Default.astro';
-import { formatDate } from '~/utilities/date';
+import Layout from "./Default.astro";
+import { formatDate } from "~/utilities/date";
 
 const { frontmatter } = Astro.props;
-const date = formatDate(new Date(frontmatter.updatedAt || undefined));
-
+const date = frontmatter.updatedAt ? formatDate(new Date(frontmatter.updatedAt)) : undefined;
 ---
 
-<Layout
-	title={frontmatter.title}
-	description={frontmatter.description}
->
-	<div class="flex flex-col gap-4">
-		<p class="text-sm text-right self-end">updated: <time datetime={date} class="">{date}</time></p>
+<Layout title={frontmatter.title} description={frontmatter.description}>
+  <div class="flex flex-col gap-4">
+    {
+      date && (
+        <p class="text-sm text-right self-end">
+          <span>updated: </span>
 
-		<article>
-			<slot />
-		</article>
-	</div>
+          <time datetime={date} class="">
+            {date}
+          </time>
+        </p>
+      )
+    }
+
+    <article>
+      <slot />
+    </article>
+  </div>
 </Layout>
