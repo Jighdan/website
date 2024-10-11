@@ -4,11 +4,6 @@ import defaultTheme from "tailwindcss/defaultTheme";
 export default {
   content: ["./src/**/*.{astro,md,mdx}"],
   theme: {
-    container: {
-      center: true,
-      padding: '1em'
-    },
-
     fontFamily: {
       default: ["Courier Prime", ...defaultTheme.fontFamily.mono],
     },

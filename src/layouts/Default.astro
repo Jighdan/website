@@ -1,15 +1,14 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
-import '@fontsource/courier-prime';
-import Landmark from '~/components/Landmark.astro';
-import Navigation from '~/components/Navigation.astro';
-import SEO from '~/components/SEO.astro';
-import '~/styles/global.css';
-import '~/styles/article.css';
+import { ViewTransitions } from "astro:transitions";
+import "@fontsource/courier-prime";
+import Navigation from "~/components/Navigation.astro";
+import SEO from "~/components/SEO.astro";
+import "~/styles/global.css";
+import "~/styles/article.css";
 
 interface Props {
-	title: string;
-	description: string;
+  title: string;
+  description: string;
 }
 
 const { title, description } = Astro.props;
@@ -18,19 +17,30 @@ const { title, description } = Astro.props;
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<ViewTransitions />
-		<SEO title={title} description={description} />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
+    <ViewTransitions />
+    <SEO title={title} description={description} />
   </head>
 
-	<body>
-	  <div class="container py-4 h-dvh grid grid-cols-1 max-lg:grid-rows-[1fr_auto] lg:grid-cols-[1fr_auto] gap-4 lg:gap-6">
-			<main class="overflow-y-auto lg:pr-2"><slot /></main>
+  <body>
+    <div
+      class="w-[64rem] max-w-full mx-auto px-4 md:px-8 py-4 grid grid-cols-1 max-lg:grid-rows-[auto_1fr] lg:grid-cols-[auto_1fr] gap-4 lg:gap-6 relative"
+    >
+      <header
+        class="flex lg:flex-col gap-8 max-lg:justify-between max-lg:pb-2 max-lg:border-b-2 max-lg:border-b-black/20 h-fit sticky top-4"
+      >
+        <a
+          href="/"
+          title="Back to the index."
+          class="block font-bold select-none cursor-pointer"
+        >
+          Reinny Almonte
+        </a>
 
-			<aside class="flex max-lg:flex-row-reverse lg:flex-col justify-between gap-2">
-				<Navigation />
-			  <Landmark text="Reinny Almonte Ramos" />
-			</aside>
-		</div>
-	</body>
+        <Navigation />
+      </header>
+
+      <main class="lg:pl-2"><slot /></main>
+    </div>
+  </body>
 </html>

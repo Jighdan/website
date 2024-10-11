@@ -1,31 +1,78 @@
 ---
+import IconCompass from "./IconCompass.astro";
+
 const { pathname } = Astro.url;
 
 const links: { href: string | URL; label: string; rel?: string }[] = [
-	{ href: '/about', label: 'About (now)' },
-	{ href: '/efforts', label: 'Efforts' },
-	{ href: '/projects', label: 'Projects' },
-	{ href: '/notes', label: 'Notes' },
-	// { href: '/contact', label: 'Contact' },
-]; 
+  { href: "/about", label: "About (now)" },
+  { href: "/efforts", label: "Efforts" },
+  { href: "/projects", label: "Projects" },
+  { href: "/notes", label: "Notes" },
+  // { href: '/contact', label: 'Contact' },
+];
 ---
 
-<nav class="flex flex-col gap-1 lg:gap-2">
-	{links.map(link => {
-		const isActive = pathname === link.href || !!pathname.startsWith(typeof link.href === 'string' ? link.href : link.href.pathname);
+<div role="navigation" class="max-lg:relative group">
+  <button type="button" class="lg:hidden max-lg:block">
+    <IconCompass />
+  </button>
 
-		return (<a href={link.href} rel={link.rel} data-active={isActive ? "true" : "false"}>{link.label}</a>)
-	})}
-</nav>
+  <div
+    role="menu"
+    class="max-lg:hidden max-lg:absolute max-lg:right-0 max-lg:origin-bottom-right"
+  >
+    <div
+      role="menubar"
+      class="max-lg:opacity-0 max-lg:px-4 max-lg:py-8 max-lg:bg-white max-lg:border max-lg:border-black/20 max-lg:rounded-sm"
+    >
+      <nav class="flex flex-col gap-1 lg:gap-2 max-lg:pointer-events-none">
+        {
+          links.map((link) => {
+            const isActive =
+              pathname === link.href ||
+              !!pathname.startsWith(
+                typeof link.href === "string" ? link.href : link.href.pathname
+              );
+
+            return (
+              <a
+                href={link.href}
+                rel={link.rel}
+                data-active={isActive ? "true" : "false"}
+              >
+                {link.label}
+              </a>
+            );
+          })
+        }
+      </nav>
+    </div>
+  </div>
+</div>
 
 <style>
-	a {
-		@apply underline transition-[background-color,_color,_padding];
-	};
+  div[role="navigation"]:focus-within > div[role="menu"] {
+    @apply max-lg:pointer-events-auto max-lg:opacity-100 max-lg:block;
+  }
 
-	a[data-active="true"] {
-		@apply bg-black text-white px-0.5;
+  div[role="navigation"]:focus-within > div[role="menu"] > div[role="menubar"] {
+    @apply max-lg:opacity-100;
+  }
 
-		text-decoration-line: unset;
-	};
+  div[role="navigation"]:focus-within
+    > div[role="menu"]
+    > div[role="menubar"]
+    > nav {
+    @apply max-lg:pointer-events-auto;
+  }
+
+  nav > a {
+    @apply underline transition-[background-color,_color,_padding] whitespace-nowrap px-0.5;
+  }
+
+  nav > a[data-active="true"] {
+    @apply bg-black text-white;
+
+    text-decoration-line: unset;
+  }
 </style>
