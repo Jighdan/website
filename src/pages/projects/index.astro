@@ -4,7 +4,7 @@ import Layout from '~/layouts/Default.astro';
 
 export const prerender = true;
 
-const projects = await CONTENT_SERVICE.getProjects();
+const projects = await CONTENT_SERVICE.modules('projects').getAll();
 const currentProjects = projects.filter(project => !project.archived);
 const archivedProjects = projects.filter(project => project.archived);
 ---

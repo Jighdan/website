@@ -1,23 +1,31 @@
 import type { GrayMatterFile } from "gray-matter";
 
-export interface JournalEntry {
-  slug: string;
+export type Modules = 'journal' | 'projects' | 'now';
+
+export interface JournalEntry extends EntryCommon {
   title: string;
   description: string;
-  content: string;
   date: Date;
 }
 
-export interface Project {
-  slug: string;
+export interface Project extends EntryCommon {
   title: string;
   description: string;
   year_start: number;
   year_end: number;
   tags: string[];
-  content: string;
   archived: boolean;
   updatedAt: Date;
+}
+
+export interface NowEntry extends EntryCommon {
+  location: string;
+  date: Date;
+};
+
+interface EntryCommon {
+  slug: string;
+  content: string;
 }
 
 export interface GitLabTreeItem {

@@ -6,7 +6,7 @@ import { CONTENT_SERVICE, type JournalEntry } from "~/services/content";
 export const prerender = true;
 
 export async function getStaticPaths() {
-  const entries = await CONTENT_SERVICE.getJournalEntries();
+  const entries = await CONTENT_SERVICE.modules('journal').getAll();
 
   return entries.map((entry) => ({
     params: { slug: entry.slug },

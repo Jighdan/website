@@ -2,7 +2,7 @@ import rss from '@astrojs/rss';
 import { CONTENT_SERVICE } from '~/services/content';
 
 export async function GET(context) {
-	const entries = await CONTENT_SERVICE.getJournalEntries();
+	const entries = await CONTENT_SERVICE.modules('journal').getAll();
 
 	return rss({
 		title: "Reinny's Journal",

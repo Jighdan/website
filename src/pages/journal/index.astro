@@ -6,7 +6,7 @@ import IconRSS from "~/components/IconRSS.astro";
 
 export const prerender = true;
 
-const entries = await CONTENT_SERVICE.getJournalEntries();
+const entries = await CONTENT_SERVICE.modules('journal').getAll();
 ---
 
 <Layout

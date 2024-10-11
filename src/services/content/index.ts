@@ -1,74 +1,30 @@
-import type { JournalEntry, Project, QueryCallbackParams } from "./interfaces";
-import { Repository } from "./utilities/repository";
+import { MODULE_PROJECTS } from "./modules/projects";
+import { MODULE_JOURNAL_ENTRIES } from "./modules/journal-entries";
+import { MODULE_NOW } from "./modules/now";
+import type { Modules } from "./interfaces";
+
+type ReturnModule = typeof MODULE_PROJECTS | typeof MODULE_JOURNAL_ENTRIES | typeof MODULE_NOW;
 
 class Service {
-  private repository: Repository;
+  public modules(module: "projects"): typeof MODULE_PROJECTS;
+  public modules(module: "journal"): typeof MODULE_JOURNAL_ENTRIES;
+  public modules(module: "now"): typeof MODULE_NOW;
+  public modules(module: Modules): ReturnModule {
+    switch (module) {
+      case "projects":
+        return MODULE_PROJECTS;
 
-  constructor() {
-    this.repository = new Repository();
-  }
+      case "journal":
+        return MODULE_JOURNAL_ENTRIES;
 
-  public async getJournalEntries() {
-    function callback({ slug, data, content }: QueryCallbackParams) {
-      if (!data.title || !data.description || !data.createdAt) {
-        return undefined;
-      }
+      case "now":
+        return MODULE_NOW;
 
-      const note: JournalEntry = {
-        slug,
-        title: data.title,
-        description: data.description,
-        content,
-        date: new Date(data.createdAt),
-      };
-
-      return note;
-    }
-
-    try {
-      const notes = await this.repository.getAll("notes", callback);
-
-      return notes.sort((a, b) => b.date.getTime() - a.date.getTime());
-
-    } catch (error) {
-      console.error(error);
-
-      return [];
-    }
-  }
-
-  public async getProjects() {
-    function callback({ slug, data, content }: QueryCallbackParams) {
-      if (!data.title || !data.description || !data.year_start || !data.tags) {
-        return undefined;
-      }
-
-      const project: Project = {
-        slug,
-        title: data.title,
-        description: data.description,
-        year_start: data.year_start,
-        year_end: data.year_end,
-        tags: data.tags,
-        archived: !!data.archived,
-        updatedAt: new Date(data.updatedAt),
-        content,
-      };
-
-      return project;
-    }
-
-    try {
-      const projects = await this.repository.getAll("projects", callback);
-
-      return projects.sort((a, b) => b.year_start - a.year_start);
-    } catch (error) {
-      console.error(error);
-
-      return [];
+      default:
+        throw new Error(`Module ${module} not found.`);
     }
   }
 }
 
 export const CONTENT_SERVICE = new Service();
-export type { JournalEntry, Project } from "./interfaces";
+export type { JournalEntry, Project, NowEntry } from "./interfaces";
