@@ -72,6 +72,7 @@ class Service {
         year_end: data.year_end,
         tags: data.tags,
         archived: !!data.archived,
+        updatedAt: new Date(data.updatedAt),
         content,
       };
 

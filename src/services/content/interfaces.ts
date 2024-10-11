@@ -17,6 +17,7 @@ export interface Project {
   tags: string[];
   content: string;
   archived: boolean;
+  updatedAt: Date;
 }
 
 export interface GitLabTreeItem {

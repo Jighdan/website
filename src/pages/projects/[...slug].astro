@@ -1,39 +1,50 @@
 ---
-import Layout from '~/layouts/Default.astro';
-import { CONTENT_SERVICE, type Project } from '~/services/content';
+import Layout from "~/layouts/Default.astro";
+import { CONTENT_SERVICE, type Project } from "~/services/content";
+import { formatDate } from "~/utilities/date";
 
 export const prerender = true;
 
 export async function getStaticPaths() {
-	const projects = await CONTENT_SERVICE.getProjects();
+  const projects = await CONTENT_SERVICE.getProjects();
 
-	return projects.map(project => ({
-		params: { slug: project.slug },
-		props: project
-	}))
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: project,
+  }));
 }
 
 type Props = Project;
 
 const project = Astro.props;
+const date = project.updatedAt ? formatDate(project.updatedAt) : undefined;
 const seoTitle = `Projects | ${project.title}`;
 ---
 
-<Layout
-	title={seoTitle}
-	description={project.description}
->
-	<div class="flex flex-col gap-8">
-		<a href="/projects" class="bg-black text-white px-0.5 w-fit">Back to Projects</a>
+<Layout title={seoTitle} description={project.description}>
+  <div class="flex flex-col gap-4">
+    {
+      date && (
+        <p class="text-sm text-right self-end">
+          <span>updated: </span>
 
-		<article class="flex flex-col gap-6">
-			<div class="flex flex-col gap-2">
-				<span class="text-black/70">[{project.year_start}] {project.tags.join(", ")}</span>
-	
-				<h2>{project.title} {!!project.archived && `[archived]`}</h2>
-			</div>
-	
-			 <div class="flex flex-col gap-4" set:html={project.content} />
-		</article>
-	</div>
+          <time datetime={date} class="lowercase">
+            {date}
+          </time>
+        </p>
+      )
+    }
+
+    <article class="flex flex-col gap-6">
+      <div class="flex flex-col gap-2">
+        <span class="text-black/70"
+          >{project.tags.join(", ")}</span
+        >
+
+        <h2>{project.title} {!!project.archived && `[archived]`}</h2>
+      </div>
+
+      <div class="flex flex-col gap-4" set:html={project.content} />
+    </article>
+  </div>
 </Layout>
