@@ -1,0 +1,34 @@
+---
+import Layout from "~/layouts/Default.astro";
+import { CONTENT_SERVICE } from "~/services/content";
+import { formatDate } from "~/utilities/date";
+import Card from "~/components/Card.astro";
+
+export const prerender = true;
+
+const entries = await CONTENT_SERVICE.modules("now").getAllExcludingLatest();
+---
+
+<Layout title="Now | Archive" description="What happened at some point.">
+  <section class="flex flex-col gap-6">
+    <article class="flex flex-col gap-4 pb-0">
+      <h2>Now | Archive</h2>
+
+      <p class="mb-0">
+        Here are my previous "<i>now</i>" letters excluding my <a href="/now"
+          >latest one</a
+        >.
+      </p>
+    </article>
+
+   <ul class="flex flex-col gap-4">
+		{entries.map(entry => (
+			<Card
+				href={`/now/archive/${entry.slug}`}
+				label={entry.location}
+				header={formatDate(entry.date)}
+			/>
+		))}
+	 </ul>
+  </section>
+</Layout>

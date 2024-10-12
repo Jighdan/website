@@ -1,36 +1,38 @@
 ---
-import Layout from '~/layouts/Default.astro';
-import { formatDate } from '~/utilities/date';
-import { CONTENT_SERVICE } from '~/services/content';
+import Layout from "~/layouts/Default.astro";
+import { formatDate } from "~/utilities/date";
+import { CONTENT_SERVICE } from "~/services/content";
+import Card from "~/components/Card.astro";
 import IconRSS from "~/components/IconRSS.astro";
 
 export const prerender = true;
 
-const entries = await CONTENT_SERVICE.modules('journal').getAll();
+const entries = await CONTENT_SERVICE.modules("journal").getAll();
 ---
 
-<Layout
-	title='Journal'
-	description='My Journal Entries.'
->
-	<section class="flex flex-col gap-4">
-		<a href={new URL("/journal/rss.xml", Astro.site)} title="Journal RSS Feed" class="flex items-center gap-2 bg-black text-white py-1 px-2" rel="alternate">
-			<span>Get the RSS Feed</span>
-			<IconRSS className='h-3 lg:h-4 w-auto' />
-		</a>
+<Layout title="Journal" description="My Journal Entries.">
+  <section class="flex flex-col gap-4">
+    <a
+      href={new URL("/journal/rss.xml", Astro.site)}
+      title="Journal RSS Feed"
+      class="flex items-center gap-2 bg-black text-white py-1 px-2"
+      rel="alternate"
+    >
+      <span>Get the RSS Feed</span>
+      <IconRSS className="h-3 lg:h-4 w-auto" />
+    </a>
 
-		<ul class="flex flex-col gap-4">
-			{
-				entries.map((entry) => (
-					<li class="border-l-4 border-l-black/50 transition-colors hover:border-l-black focus-within:border-l-black pl-2">
-						<a href={`/journal/${entry.slug}/`} class="flex flex-col">
-							<p class="font-light text-base">{formatDate(entry.date)}</p>
-							<h4 class="font-semibold">{entry.title}</h4>
-							<p class="text-balance line-clamp-2">{entry.description}</p>
-						</a>
-					</li>
-				))
-			}
-		</ul>
-	</section>
+    <ul class="flex flex-col gap-4">
+      {
+        entries.map((entry) => (
+          <Card
+            href={`/journal/${entry.slug}/`}
+            label={formatDate(entry.date)}
+            header={entry.title}
+            content={entry.description}
+          />
+        ))
+      }
+    </ul>
+  </section>
 </Layout>

@@ -20,6 +20,18 @@ class Module {
 		}
 	}
 
+	public async getAllExcludingLatest() {
+		try {
+			const entries = await this.getAll();
+
+			return entries.slice(1);
+		} catch (error) {
+			console.error(error);
+
+			return [];
+		}
+	}
+
 	/** returns from newest to oldest. */
 	public async getAll() {
     try {

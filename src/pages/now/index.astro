@@ -1,12 +1,43 @@
 ---
-import Layout from '~/layouts/Default.astro';
+import Layout from "~/layouts/Default.astro";
+import { CONTENT_SERVICE } from "~/services/content";
+import { formatDate } from "~/utilities/date";
+
+export const prerender = true;
+
+const entry = await CONTENT_SERVICE.modules("now").get();
+const date = entry?.date ? formatDate(entry.date) : undefined;
 ---
 
-<Layout
-	title=""
-	description=""
->
-	<div class="flex flex-col gap">
+<Layout title="Now" description="What's happening now.">
+  <div class="flex flex-col gap-4">
+    <div class="flex flex-row gap-2 flex-wrap justify-between items-center">
+      <span class="text-sm italic">{entry?.location}</span>
 
-	</div>
+      <p class="text-sm">
+        <span>updated: </span>
+
+        <time datetime={date} class="lowercase">
+          {date}
+        </time>
+      </p>
+    </div>
+
+    <article class="flex flex-col gap-6">
+      <div class="flex flex-col gap-4">
+        <h2 class="font-semibold">Now</h2>
+
+        <p>
+          This is a <a
+            href="https://nownownow.com/about"
+            target="_blank"
+            rel="norefferer noopener">now page</a
+          > that serves as open letters to share about what's up. Feel free to check
+          the <a href="/now/archive">archive</a> of my previous letters.
+        </p>
+      </div>
+
+      <div set:html={entry?.content} />
+    </article>
+  </div>
 </Layout>
