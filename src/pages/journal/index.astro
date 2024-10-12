@@ -3,24 +3,36 @@ import Layout from "~/layouts/Default.astro";
 import { formatDate } from "~/utilities/date";
 import { CONTENT_SERVICE } from "~/services/content";
 import Card from "~/components/Card.astro";
-import IconRSS from "~/components/IconRSS.astro";
 
 export const prerender = true;
 
 const entries = await CONTENT_SERVICE.modules("journal").getAll();
+const timestamp = formatDate(new Date("12 Oct 2024"));
 ---
 
 <Layout title="Journal" description="My Journal Entries.">
-  <section class="flex flex-col gap-4">
-    <a
-      href={new URL("/journal/rss.xml", Astro.site)}
-      title="Journal RSS Feed"
-      class="flex items-center gap-2 bg-black text-white py-1 px-2"
-      rel="alternate"
-    >
-      <span>Get the RSS Feed</span>
-      <IconRSS className="h-3 lg:h-4 w-auto" />
-    </a>
+  <div class="flex flex-col gap-6">
+    <div class="flex flex-col gap-4">
+      <p class="text-sm text-right self-end">
+        <span>updated: </span>
+
+        <time datetime={timestamp} class="lowercase">
+          {timestamp}
+        </time>
+      </p>
+
+      <article class="pb-0">
+        <h2>Journal</h2>
+
+        <p class="mb-0">
+          Thoughts and ideas exposed without a filter. Also available as <a
+            title="Journal RSS Feed"
+						 rel="alternate"
+            href={new URL("/journal/rss.xml", Astro.site)}>RSS feed</a
+          >.
+        </p>
+      </article>
+    </div>
 
     <ul class="flex flex-col gap-4">
       {
@@ -34,5 +46,5 @@ const entries = await CONTENT_SERVICE.modules("journal").getAll();
         ))
       }
     </ul>
-  </section>
+  </div>
 </Layout>
