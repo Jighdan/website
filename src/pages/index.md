@@ -16,7 +16,7 @@ My name is Reinny and you could know me as a software craftsman, as a movement o
 
 Check my [about page](/about) to hear a bit more.
 
-### share moments
+### sharing about now
 
 I write [open letters](/now) from time to time to share what I have been up to, these are inspired by Derek Sivers' [now project](https://nownownow.com/about).
 
