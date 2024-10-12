@@ -17,5 +17,7 @@ export default defineConfig({
   redirects: {
     '/notes': '/journal',
     '/notes/[...slug]': '/journal/[...slug]',
+    '/projects': '/efforts',
+    '/projects/[...slug]': '/efforts/[...slug]',
   }
 });
