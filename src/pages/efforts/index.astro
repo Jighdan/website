@@ -2,64 +2,80 @@
 import { CONTENT_SERVICE } from "~/services/content";
 import Layout from "~/layouts/Default.astro";
 import Card from "~/components/Card.astro";
+import { formatDate } from "~/utilities/date";
 
 export const prerender = true;
 
 const projects = await CONTENT_SERVICE.modules("projects").getAll();
 const currentProjects = projects.filter((project) => !project.archived);
 const archivedProjects = projects.filter((project) => project.archived);
+
+const timestamp = formatDate(new Date("12 Oct 2024"));
 ---
 
-<Layout title="Efforts" description="What I have been up to.">
-  <div class="flex flex-col gap-8">
-    <article class="pb-0">
-      <h2>Efforts</h2>
+<Layout title="Efforts" description="The work I care about.">
+  <div class="flex flex-col gap-10">
+    <div class="flex flex-col gap-4">
+      <p class="text-sm text-right self-end">
+        <span>updated: </span>
 
-      <p>
-        The spaces where I have placed my intention, these usually have some
-        sort of "end date" assigned either before beginning the project or while
-        at it.
+        <time datetime={timestamp} class="lowercase">
+          {timestamp}
+        </time>
       </p>
 
-      <p class="mb-0">
-        Of course, there are <a href="/journal/long-term-efforts"
-          >efforts that have no end</a
-        >. Or rather, the end would be once the effort doesn't serve me anymore.
-      </p>
-    </article>
+      <article class="pb-0">
+        <h2>Efforts</h2>
 
-    <section class="flex flex-col gap-6">
-      <h3 class="text-2xl md:text-3xl font-bold">Present</h3>
+        <p>
+          The spaces where I have placed my intention, these usually have some
+          sort of "end date" assigned either before beginning the project or
+          while at it.
+        </p>
 
-      <ol class="flex flex-col gap-4">
-        {
-          currentProjects.map((entry) => (
-            <Card
-              href={`/efforts/${entry.slug}/`}
-              label={entry.year_start}
-              header={entry.title}
-              content={entry.description}
-            />
-          ))
-        }
-      </ol>
-    </section>
+        <p class="mb-0">
+          Of course, there are <a href="/journal/long-term-efforts"
+            >efforts that have no end</a
+          >. Or rather, the end would be once the effort doesn't serve me
+          anymore.
+        </p>
+      </article>
+    </div>
 
-    <section class="flex flex-col gap-6">
-      <h3 class="text-2xl md:text-3xl font-bold">Archive</h3>
+    <div class="flex flex-col gap-8">
+      <section class="flex flex-col gap-6">
+        <h3 class="text-2xl md:text-3xl font-bold">Present</h3>
 
-      <ol class="flex flex-col gap-4">
-        {
-          archivedProjects.map((entry) => (
-            <Card
-              href={`/efforts/${entry.slug}/`}
-              label={entry.year_start}
-              header={entry.title}
-              content={entry.description}
-            />
-          ))
-        }
-      </ol>
-    </section>
+        <ol class="flex flex-col gap-4">
+          {
+            currentProjects.map((entry) => (
+              <Card
+                href={`/efforts/${entry.slug}/`}
+                label={entry.year_start}
+                header={entry.title}
+                content={entry.description}
+              />
+            ))
+          }
+        </ol>
+      </section>
+
+      <section class="flex flex-col gap-6">
+        <h3 class="text-2xl md:text-3xl font-bold">Archive</h3>
+
+        <ol class="flex flex-col gap-4">
+          {
+            archivedProjects.map((entry) => (
+              <Card
+                href={`/efforts/${entry.slug}/`}
+                label={entry.year_start}
+                header={entry.title}
+                content={entry.description}
+              />
+            ))
+          }
+        </ol>
+      </section>
+    </div>
   </div>
 </Layout>
