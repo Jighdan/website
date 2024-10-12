@@ -2,13 +2,6 @@ article {
   @apply text-pretty scroll-smooth pb-8;
 }
 
-article h1::selection, article h2::selection, article h3::selection, article h4::selection, article p::selection, article a::selection, article span::selection {
-  @apply underline;
-
-  background-color: unset;
-  color: unset;
-}
-
 article h1, article h2, article h3, article h4 {
   @apply font-bold;
 }

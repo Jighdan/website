@@ -1,3 +1,7 @@
+*::selection {
+  @apply bg-black text-white dark:bg-white dark:text-black;
+}
+
 body {
   @apply font-default text-lg md:text-xl text-black bg-white dark:text-white dark:bg-black;
 
