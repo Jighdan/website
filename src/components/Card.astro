@@ -10,7 +10,7 @@ const { href, label, header, content } = Astro.props;
 ---
 
 <li
-  class="border-l-4 border-l-black/50 transition-colors hover:border-l-black focus-within:border-l-black pl-2"
+  class="border-l-4 border-l-black/50 dark:border-l-white/50 transition-colors hover:border-l-black dark:hover:border-l-white focus-within:border-l-black dark:focus-within:border-l-white pl-2"
 >
   <a href={href} class="flex flex-col">
     <p class="font-light text-base">{label}</p>

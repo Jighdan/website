@@ -1,5 +1,5 @@
 body {
-  @apply font-default text-lg md:text-xl;
+  @apply font-default text-lg md:text-xl text-black bg-white dark:text-white dark:bg-black;
 
   margin: 0;
   padding: 0;

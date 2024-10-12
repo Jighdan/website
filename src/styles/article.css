@@ -42,11 +42,11 @@ article p {
 }
 
 article a {
-  @apply bg-black text-white px-0.5;
+  @apply bg-black text-white dark:bg-white dark:text-black px-0.5;
 }
 
 article blockquote {
-  @apply mb-4 pl-4 border-l-4 border-black flex flex-col gap-7;
+  @apply mb-4 pl-4 border-l-4 border-black dark:border-white flex flex-col gap-7;
 }
 
 article blockquote > p {
