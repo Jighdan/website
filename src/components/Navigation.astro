@@ -14,7 +14,7 @@ const links: { href: string; label: string }[] = [
 ];
 ---
 
-<div role="navigation" class="max-lg:relative group" data-is-open="false">
+<div role="navigation" class="max-lg:relative group">
   <button type="button" class="lg:hidden max-lg:block">
     <IconCompass className="text-black dark:text-white" />
   </button>
@@ -46,14 +46,12 @@ const links: { href: string; label: string }[] = [
 
 <style>
   div[role="navigation"]:focus-within > div[role="menu"],
-  div[role="navigation"][data-is-open="true"] > div[role="menu"] {
+  div[role="navigation"]:hover > div[role="menu"] {
     @apply max-lg:pointer-events-auto max-lg:block;
   }
 
   div[role="navigation"]:focus-within > div[role="menu"] > div[role="menubar"],
-  div[role="navigation"][data-is-open="true"]
-    > div[role="menu"]
-    > div[role="menubar"] {
+  div[role="navigation"]:hover > div[role="menu"] > div[role="menubar"] {
     @apply max-lg:opacity-100;
   }
 
@@ -61,10 +59,7 @@ const links: { href: string; label: string }[] = [
     > div[role="menu"]
     > div[role="menubar"]
     > nav,
-  div[role="navigation"][data-is-open="true"]
-    > div[role="menu"]
-    > div[role="menubar"]
-    > nav {
+  div[role="navigation"]:hover > div[role="menu"] > div[role="menubar"] > nav {
     @apply max-lg:pointer-events-auto;
   }
 
