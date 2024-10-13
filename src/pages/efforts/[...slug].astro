@@ -18,7 +18,7 @@ type Props = Project;
 
 const project = Astro.props;
 const date = project.updatedAt ? formatDate(project.updatedAt) : undefined;
-const seoTitle = `Projects | ${project.title}`;
+const seoTitle = `Efforts | ${project.title}`;
 ---
 
 <Layout title={seoTitle} description={project.description}>
