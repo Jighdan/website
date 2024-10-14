@@ -50,10 +50,20 @@ article img {
   @apply select-none md:mx-auto md:max-w-3xl;
 }
 
+article ol,
+article ul {
+  @apply list-inside mb-4;
+}
+
 article ol {
-	@apply list-decimal list-inside;
+	@apply list-decimal;
 }
 
 article ul {
-	@apply list-disc list-inside;
+	list-style-type: "- ";
+}
+
+article ol li,
+article ul li {
+  @apply mb-2;
 }
